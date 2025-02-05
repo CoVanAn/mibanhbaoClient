@@ -44,7 +44,7 @@
 }
 
 .explore-menu-list-item p{
-    font-size: 1.5vw;
+    font-size: 20px;
     color: #49557e;
     cursor: pointer;
 }
@@ -73,6 +73,6 @@
         width: 10vw;
     }
     .explore-menu-list-item p{
-        font-size: 2vw;
+        font-size: 4vw;
     }
 }
