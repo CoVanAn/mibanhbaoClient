@@ -9,12 +9,13 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const { url, setToken } = useContext(StoreContext)
 
-  const [currState, setCurrState] = useState('Login')
+  const [currState, setCurrState] = useState('Đăng nhập')
   const [data, setData] = useState({
     name: '',
     email: '',
     password: ''
   })
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     console.log(data)
@@ -26,24 +27,81 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const onLogin = async (e) => {
     e.preventDefault()
+    setErrorMessage('') // Clear previous error
+    
+    // Validation
+    if (!data.email || !data.password) {
+      setErrorMessage('Vui lòng nhập đầy đủ email và mật khẩu');
+      return;
+    }
+    
+    if (currState === "Đăng ký" && !data.name) {
+      setErrorMessage('Vui lòng nhập họ tên');
+      return;
+    }
+    
     let newUrl = url
-    if (currState === "Login") {
+    if (currState === "Đăng nhập") {
       newUrl = `${url}/api/user/login`
     } else {
       newUrl = `${url}/api/user/register`
     }
-    const response = await axios.post(newUrl, data);
+    
+    console.log('Sending request to:', newUrl);
+    console.log('Data being sent:', data);
+    
+    try {
+      const response = await axios.post(newUrl, data);
+      console.log('Response:', response.data);
 
-    if (response.data.success) {
-      setToken(response.data.token)
-      localStorage.setItem('token', response.data.token)
-      // alert("Login successful")
-      setShowLogin(false)
+      if (response.data.success) {
+        setToken(response.data.token)
+        localStorage.setItem('token', response.data.token)
+        setShowLogin(false)
+      }
+      else {
+        const message = response.data.message;
+        if (currState === "Đăng nhập") {
+          if (message === "User not found") {
+            setErrorMessage('Email không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký tài khoản mới.');
+          } else if (message === "Invalid credentials") {
+            setErrorMessage('Mật khẩu không đúng. Vui lòng thử lại.');
+          } else {
+            setErrorMessage(message || 'Đăng nhập thất bại');
+          }
+        } else {
+          setErrorMessage(message || 'Đăng ký thất bại');
+        }
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      console.error('Error details:', error.response?.data);
+      console.error('Error status:', error.response?.status);
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        const errorMsg = error.response.data.message;
+        
+        if (currState === "Đăng nhập") {
+          if (errorMsg === "User not found") {
+            setErrorMessage('Email không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký tài khoản mới.');
+          } else if (errorMsg === "Invalid credentials") {
+            setErrorMessage('Mật khẩu không đúng. Vui lòng thử lại.');
+          } else if (errorMsg === "Email and password are required") {
+            setErrorMessage('Vui lòng nhập đầy đủ email và mật khẩu.');
+          } else {
+            setErrorMessage(errorMsg || 'Đăng nhập thất bại');
+          }
+        } else {
+          if (errorMsg === "User already exists") {
+            setErrorMessage('Email đã được sử dụng. Vui lòng chọn email khác.');
+          } else {
+            setErrorMessage(errorMsg || 'Đăng ký thất bại');
+          }
+        }
+      } else {
+        setErrorMessage('Không thể kết nối tới server. Vui lòng thử lại sau.')
+      }
     }
-    else {
-      alert(response.data.error)
-    }
-    console.log(result)
   }
 
   return (
@@ -54,18 +112,19 @@ const LoginPopup = ({ setShowLogin }) => {
           <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
         </div>
         <div action="" className="login-popup-inputs">
-          {currState === "Login" ? <> </> : <input name='name' onChange={onhandleChange} value={data.name} type="text" placeholder="Your name" required />}
-          <input name='email' onChange={onhandleChange} value={data.email} type="text" placeholder="Email" required />
-          <input name='password' onChange={onhandleChange} value={data.password} type="password" placeholder="Password" required />
+          {currState === "Đăng nhập" ? <> </> : <input name='name' onChange={onhandleChange} value={data.name} type="text" placeholder="Họ và tên" required />}
+          <input name='email' onChange={onhandleChange} value={data.email} type="email" placeholder="Email" required />
+          <input name='password' onChange={onhandleChange} value={data.password} type="password" placeholder="Mật khẩu" required />
         </div>
-        <button type='submit'>{currState === "Sign up" ? "Create account" : "Login"}</button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <button type='submit'>{currState === "Đăng ký" ? "Tạo tài khoản" : "Đăng nhập"}</button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
-          <p>I agree to the terms and conditions</p>
+          <p>Tôi đồng ý với điều khoản sử dụng</p>
         </div>
-        {currState === "Login" ?
-          <p>Create a new account ? <span onClick={() => setCurrState("Sign up")}>Click here</span></p>
-          : <p>Already have an account ? <span onClick={() => setCurrState("Login")}>Login here</span></p>
+        {currState === "Đăng nhập" ?
+          <p>Chưa có tài khoản? <span onClick={() => setCurrState("Đăng ký")}>Đăng ký ngay</span></p>
+          : <p>Đã có tài khoản? <span onClick={() => setCurrState("Đăng nhập")}>Đăng nhập tại đây</span></p>
         }
 
       </form>

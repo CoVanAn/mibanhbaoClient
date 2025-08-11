@@ -22,22 +22,27 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((food, index) => {
-          if (cartItems[food._id] > 0)
-            return (
-              <div key={index} >
-                <div className='cart-items-title cart-items-item'>
-                  <img src={url+'/images/'+ food.image} alt="" />
-                  <p>{food.name}</p>
-                  <p>${food.price}</p>
-                  <p>{cartItems[food._id]}</p>
-                  <p>${food.price * cartItems[food._id]}</p>
-                  <p style={{ cursor: 'pointer' }} onClick={() => removeFromCart(food._id)}>X</p>
-                </div>
-                <hr />
-              </div>
-            )
-        })}
+        {food_list && food_list.length > 0 ? (
+        food_list.map((food, index) => {
+            if (cartItems && cartItems[food._id] > 0)
+                return (
+                    <div key={index} >
+                        <div className='cart-items-title cart-items-item'>
+                            <img src={url+'/images/'+ food.image} alt="" />
+                            <p>{food.name}</p>
+                            <p>${food.price}</p>
+                            <p>{cartItems[food._id]}</p>
+                            <p>${food.price * cartItems[food._id]}</p>
+                            <p style={{ cursor: 'pointer' }} onClick={() => removeFromCart(food._id)}>X</p>
+                        </div>
+                        <hr />
+                    </div>
+                )
+            return null;
+        })
+    ) : (
+        <div>Loading...</div>
+    )}
       </div>
       <div className='cart-bottom'>
         <div className='cart-total'>

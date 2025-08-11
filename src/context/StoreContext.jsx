@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 export const StoreContext = createContext(null);
 
-const linkApi = "https://apisubject-backend.onrender.com"
-// const linkApi = "http://localhost:4000"
+// const linkApi = "https://apisubject-backend.onrender.com"
+const linkApi = "http://localhost:4000"
 
 const StoreContextProvider = (props) => {
 
@@ -53,9 +53,18 @@ const StoreContextProvider = (props) => {
     }
 
     const loadCartData = async (token) => {
-        const response = await axios.post(url + '/api/cart/get', {}, { headers: { token } })
-        const data = response.data.cartData
-        setCartItems(data)
+        try {
+            const response = await axios.post(url + '/api/cart/get', {}, { headers: { token } })
+            const data = response.data.cartData
+            // Đảm bảo data là object, nếu không thì sử dụng object rỗng
+            setCartItems(data && typeof data === 'object' ? data : {})
+        } catch (error) {
+            console.error('Error loading cart data:', error)
+            // Nếu có lỗi (ví dụ: token hết hạn), xóa token và reset cartItems
+            localStorage.removeItem('token')
+            setToken('')
+            setCartItems({})
+        }
     }
 
     const getTotalCartAmount = () => {
@@ -63,7 +72,9 @@ const StoreContextProvider = (props) => {
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 let itemInfo = food_list.find((produce) => produce._id === item)
-                totalAmount += itemInfo.price * cartItems[item]
+                if (itemInfo) {
+                    totalAmount += itemInfo.price * cartItems[item]
+                }
             }
         }
         return totalAmount;
