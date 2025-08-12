@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
+import Header from './components/Header/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
@@ -8,7 +9,6 @@ import MyOrders from './pages/MyOrders/myOrders'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import Contact from './pages/Contact/Contact'
-import Header from './components/Header/Header'
 import ShippingPolicy from './pages/Policy/ShippingPolicy/ShippingPolicy'
 import PrivacyPolicy from './pages/Policy/PrivacyPolicy/PrivacyPolicy'
 import ExchangePolicy from './pages/Policy/ExchangePolicy/ExchangePolicy'
@@ -28,8 +28,8 @@ const App = () => {
     <>
       {showLogin ? <LoginPopup setShowLogin={setShowLogin}/> : <></>}
       <div className="app">
-        <Navbar setShowLogin={setShowLogin} />
-        <Header />
+        <Header setShowLogin={setShowLogin} />
+        <Navbar  />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
@@ -40,10 +40,10 @@ const App = () => {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="exchange-policy" element={<ExchangePolicy />} />
 
-          <Route path="how-to-buy" element={<HowtoBuy />} />
-          <Route path="shipping" element={<Shipping />} />
-          <Route path="terms-of-service" element={<TermsofService />} />
-          <Route path="payment-instructions" element={<PaymentInstructions />} />
+          <Route path="huong-dan-mua-hang" element={<HowtoBuy />} />
+          <Route path="huong-dan-giao-nhan" element={<Shipping />} />
+          <Route path="dieu-khoan-dich-vu" element={<TermsofService />} />
+          <Route path="huong-dan-thanh-toan" element={<PaymentInstructions />} />
         </Routes>
       </div>
       <Footer />

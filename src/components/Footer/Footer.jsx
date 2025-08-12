@@ -56,10 +56,10 @@ const Footer = () => {
                         </div>
                     </div>
                     <ul style={isMobile ? { display: showSupport ? 'block' : 'none' } : {}}>
-                        <li onClick={() => { navigate('/how-to-buy') }}>Hướng dẫn mua hàng</li>
-                        <li onClick={() => { navigate('/payment-instructions') }}>Hướng dẫn thanh toán</li>
-                        <li onClick={() => { navigate('/shipping') }}>Hướng dẫn giao nhận</li>
-                        <li onClick={() => { navigate('/terms-of-service') }}>Điều khoản dịch vụ</li>
+                        <li onClick={() => { navigate('/huong-dan-mua-hang') }}>Hướng dẫn mua hàng</li>
+                        <li onClick={() => { navigate('/huong-dan-thanh-toan') }}>Hướng dẫn thanh toán</li>
+                        <li onClick={() => { navigate('/huong-dan-giao-nhan') }}>Hướng dẫn giao nhận</li>
+                        <li onClick={() => { navigate('/dieu-khoan-dich-vu') }}>Điều khoản dịch vụ</li>
                     </ul>
                 </div>
 

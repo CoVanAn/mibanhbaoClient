@@ -2,139 +2,78 @@ import React, { useState, useEffect } from 'react'
 import './Header.css'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { StoreContext } from '../../context/StoreContext';
 
-const Header = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const slides = [assets.slider_1, assets.slider_2];
+const Header = ({ setShowLogin }) => {
+  const [menu, setMenu] = useState("home");
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext)
+
   const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.removeItem('token')
+    setToken('')
+    navigate('/')
+  }
 
+  // Close dropdown when clicking outside
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 8000); // Chuyển slide mỗi 5 giây
+    const handleClickOutside = (event) => {
+      if (showProfileDropdown && !event.target.closest('.navbar-profile')) {
+        setShowProfileDropdown(false);
+      }
+    };
 
-    return () => clearInterval(interval);
-  }, [slides.length]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showProfileDropdown]);
 
   return (
-    <>
-      {/* Top Bar */}
-      {/* <div className='top-bar'>
-        <div className='top-bar-container'>
-          <div className='top-bar-left'>
-            <span>Hotline: 0942 5533 42</span>
-            <span>Email: hotro@mibanhbao.vn</span>
-          </div>
-          <div className='top-bar-right'>
-            <span>Tài khoản</span>
-            <span>Đăng xuất</span>
-            <span>Liên hệ</span>
-          </div>
+    <div className='navbar'>
+      <div className='navbar-container'>
+        <div className='navbar-left'>
+          <span>Hotline: 0942 5533 42</span>
+          <span>Email: hotro@mibanhbao.vn</span>
         </div>
-      </div> */}
-
-      {/* Logo Section */}
-      <div className='logo-section'>
-        <div className='logo-container'>
-          <img src={assets.logo} alt="Logo" className='main-logo' />
-        </div>
-      </div>
-
-      {/* Navigation Bar */}
-      <hr style={{ border: '1px solid #eee' }} />
-      <div className='nav-bar'>
-        <div className='nav-container'>
-          <div className='nav-left'>
-            <span onClick={() => navigate('/')}>Trang chủ</span>
-            <span onClick={() => navigate('/about')}>Giới thiệu sản phẩm</span>
-            <span onClick={() => navigate('/news')}>Tin tức</span>
-            <span onClick={() => navigate('/contact')}>Liên hệ</span>
-          </div>
-          <div className='hamburger-menu' onClick={() => setSidebarOpen(!sidebarOpen)}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div className='nav-right'>
-            {/* Menu hamburger cho tablet/mobile */}
-            <div className='nav-icon'>
-              <img src={assets.search_icon} alt="Tìm kiếm" />
-            </div>
-            <div className='nav-icon'>
-              <img src={assets.basket_icon} alt="Giỏ hàng" />
-            </div>
-          </div>
+        <div className='navbar-right'>
+          {!token ? (
+            <>
+              <span onClick={() => setShowLogin(true)} className='login-btn'>Đăng nhập</span>
+              <span className='login-btn' onClick={() => setShowLogin(true)}>Đăng ký</span>
+              {/* <span>Liên hệ</span> */}
+            </>
+          ) : (
+            <>
+              {/* <div className='navbar-profile' onClick={() => setShowProfileDropdown(!showProfileDropdown)}> */}
+              <span className='login-btn'>Tài khoản</span>
+              {/* {showProfileDropdown && (
+                    <ul className='nav-profile-dropdown'>
+                      <li onClick={() => {navigate('/myorders'); setShowProfileDropdown(false)}}>
+                        <img src={assets.bag_icon} alt="" />
+                        <p>Đơn hàng của tôi</p>
+                      </li>
+                      <hr />
+                      <li onClick={() => {logout(); setShowProfileDropdown(false)}}>
+                        <img src={assets.logout_icon} alt="" />
+                        <p>Đăng xuất</p>
+                      </li>
+                    </ul>
+                  )} */}
+              {/* </div> */}
+              <span className='login-btn' onClick={logout}>Đăng xuất</span>
+              {/* <span className='login-btn'>Liên hệ</span> */}
+            </>
+          )}
         </div>
       </div>
-
-      {/* Sidebar cho tablet/mobile */}
-      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-        <div className='sidebar-content'>
-          <div className='sidebar-header'>
-            <h3>Menu</h3>
-            <span className='close-btn' onClick={() => setSidebarOpen(false)}>×</span>
-          </div>
-          <div className='sidebar-menu'>
-            <span onClick={() => {
-              setSidebarOpen(false)
-              navigate('/')
-            }}>Trang chủ</span>
-            <span onClick={() => {
-              setSidebarOpen(false)
-              navigate('/about')
-            }}>Giới thiệu sản phẩm</span>
-            <span onClick={() => {
-              setSidebarOpen(false)
-              navigate('/news')
-            }}>Tin tức</span>
-            <span onClick={() => {
-              setSidebarOpen(false)
-              navigate('/contact')
-            }}>Liên hệ</span>
-          </div>
-        </div>
-      </div>
-
-      {sidebarOpen && <div className='sidebar-overlay' onClick={() => setSidebarOpen(false)}></div>}
-
-      {/* <div className='slider-section'>
-        <div className='slider-container'>
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`slider-item ${index === currentSlide ? 'active' : ''}`}
-            >
-              <img src={slide} alt={`Slider ${index + 1}`} />
-            </div>
-          ))}
-
-          <div className='slider-dots'>
-            {slides.map((_, index) => (
-              <span
-                key={index}
-                className={`dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(index)}
-              ></span>
-            ))}
-          </div>
-        </div>
-      </div> */}
-
-      {/* Brand Section */}
-      {/* <div className='brand-section'>
-        <div className='brand-container'>
-          <img src={assets.img_brand_1} alt="Brand 1" />
-          <img src={assets.img_brand_2} alt="Brand 2" />
-          <img src={assets.img_brand_3} alt="Brand 3" />
-          <img src={assets.img_brand_4} alt="Brand 4" />
-          <img src={assets.img_brand_5} alt="Brand 5" />
-          <img src={assets.img_brand_6} alt="Brand 6" />
-        </div>
-      </div> */}
-    </>
+    </div>
   )
 }
 
 export default Header
+

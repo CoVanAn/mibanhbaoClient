@@ -1,3 +1,4 @@
+
 .paymentinstructions-container {
   max-width: 1100px;
   margin: 40px auto;
@@ -9,19 +10,16 @@
   text-align: center;
   margin-bottom: 32px;
 }
-
-.paymentinstructions-container h2 {
-    margin-top: 12px;
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.paymentinstructions-container ol {
-  padding-left: 20px;
-  margin-bottom: 20px;
-}
 .paymentinstructions-container li {
   margin-bottom: 8px;
   font-size: 1rem;
-    list-style-type: none;
+  list-style-type: none;
+}
+.paymentinstructions-container ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+.paymentinstructions-container ul li {
+  font-size: 1rem;
+  margin-left: -20px;
 }

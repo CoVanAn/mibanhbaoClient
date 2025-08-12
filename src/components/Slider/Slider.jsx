@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { assets } from '../../assets/assets';
+import './Slider.css'
 
 const Slider = () => {
     const slides = [assets.slider_1, assets.slider_2];
@@ -9,10 +10,11 @@ const Slider = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 8000); // Chuyển slide mỗi 5 giây
+        }, 10000); // Chuyển slide mỗi 5 giây
 
         return () => clearInterval(interval);
     }, [slides.length]);
+   
     return (
         <div>
             <div className='slider-section'>
@@ -26,15 +28,16 @@ const Slider = () => {
                         </div>
                     ))}
 
-                    <div className='slider-dots'>
-                        {slides.map((_, index) => (
+                </div>
+                <div className='slider-dots'>
+                    {slides.map((_, index) => (
+                        <div key={index}>
                             <span
-                                key={index}
                                 className={`dot ${index === currentSlide ? 'active' : ''}`}
                                 onClick={() => setCurrentSlide(index)}
                             ></span>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
