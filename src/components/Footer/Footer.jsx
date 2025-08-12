@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+    const navigate = useNavigate();
+
+    // State cho các cột có thể thu gọn
+    const [showPolicy, setShowPolicy] = useState(false);
+    const [showSupport, setShowSupport] = useState(false);
+
+    // Kiểm tra màn hình di động
+    const isMobile = window.innerWidth <= 768;
+
     return (
         <div className='footer' id='footer'>
             <div className='footer-container'>
@@ -19,22 +29,37 @@ const Footer = () => {
 
                 {/* Cột 2 - Chính sách */}
                 <div className='footer-content'>
-                    <h2>CHÍNH SÁCH</h2>
-                    <ul>
-                        <li>Chính sách vận chuyển</li>
-                        <li>Chính sách đổi trả hàng</li>
-                        <li>Chính sách bảo mật</li>
+                    <div className='footer-title-row' onClick={() => isMobile && setShowPolicy(!showPolicy)}>
+                        <div className='footer-top'>
+                            <h2>CHÍNH SÁCH</h2>
+                            {isMobile && (
+                                <span className='footer-toggle'>{showPolicy ? '-' : '+'}</span>
+                            )}
+                        </div>
+                    </div>
+                    <ul style={isMobile ? { display: showPolicy ? 'block' : 'none' } : {}}>
+                        <li onClick={() => { navigate('/shipping-policy') }}>Chính sách vận chuyển</li>
+                        <li onClick={() => { navigate('/exchange-policy') }}>Chính sách đổi trả hàng</li>
+                        <li onClick={() => { navigate('/privacy-policy') }}>Chính sách bảo mật</li>
                     </ul>
                 </div>
 
                 {/* Cột 3 - Hỗ trợ khách hàng */}
                 <div className='footer-content'>
-                    <h2>HỖ TRỢ KHÁCH HÀNG</h2>
-                    <ul>
-                        <li>Hướng dẫn mua hàng</li>
-                        <li>Hướng dẫn thanh toán</li>
-                        <li>Hướng dẫn giao nhận</li>
-                        <li>Điều khoản dịch vụ</li>
+                    <div className='footer-title-row' onClick={() => isMobile && setShowSupport(!showSupport)}>
+                                                <div className='footer-top'>
+
+                        <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+                        {isMobile && (
+                            <span className='footer-toggle'>{showSupport ? '-' : '+'}</span>
+                        )}
+                        </div>
+                    </div>
+                    <ul style={isMobile ? { display: showSupport ? 'block' : 'none' } : {}}>
+                        <li onClick={() => { navigate('/how-to-buy') }}>Hướng dẫn mua hàng</li>
+                        <li onClick={() => { navigate('/payment-instructions') }}>Hướng dẫn thanh toán</li>
+                        <li onClick={() => { navigate('/shipping') }}>Hướng dẫn giao nhận</li>
+                        <li onClick={() => { navigate('/terms-of-service') }}>Điều khoản dịch vụ</li>
                     </ul>
                 </div>
 
@@ -42,8 +67,8 @@ const Footer = () => {
                 <div className='footer-content'>
                     <h2>ĐĂNG KÝ NHẬN KHUYẾN MÃI</h2>
                     <div className='newsletter'>
-                        <input 
-                            type="email" 
+                        <input
+                            type="email"
                             placeholder="Nhập địa chỉ email"
                             className='newsletter-input'
                         />
@@ -59,9 +84,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            
             <hr />
-            
             {/* Copyright */}
             <div className='footer-copyright'>
                 <p>Copyright © Mi Bánh Bao</p>

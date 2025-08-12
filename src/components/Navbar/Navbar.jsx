@@ -45,7 +45,7 @@ const Navbar = ({ setShowLogin }) => {
             <>
               <span onClick={() => setShowLogin(true)} className='login-btn'>Đăng nhập</span>
               <span className='login-btn' onClick={() => setShowLogin(true)}>Đăng ký</span>
-              <span>Liên hệ</span>
+              {/* <span>Liên hệ</span> */}
             </>
           ) : (
             <>
@@ -66,7 +66,7 @@ const Navbar = ({ setShowLogin }) => {
                   )} */}
               {/* </div> */}
               <span className='login-btn' onClick={logout}>Đăng xuất</span>
-              <span className='login-btn'>Liên hệ</span>
+              {/* <span className='login-btn'>Liên hệ</span> */}
             </>
           )}
         </div>

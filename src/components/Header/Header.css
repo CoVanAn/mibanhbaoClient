@@ -43,7 +43,7 @@
 
 .top-bar-left span:hover,
 .top-bar-right span:hover {
-    color: #ffa500;
+    color: #A00605;
 }
 
 /* Logo Section */
@@ -92,12 +92,13 @@
     cursor: pointer;
     font-weight: 500;
     color: #333;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 16px;
     transition: color 0.3s ease;
 }
 
 .nav-left span:hover {
-    color: #ffa500;
+    color: #cd0505;
 }
 
 .nav-right {
@@ -204,7 +205,7 @@ nav.nav-icon img:second {
 }
 
 .sidebar-menu span:hover {
-    color: #ffa500;
+    color: #A00605;
 }
 
 .sidebar-overlay {

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './Header.css'
 import { assets } from '../../assets/assets'
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const slides = [assets.slider_1, assets.slider_2];
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,10 +47,10 @@ const Header = () => {
       <div className='nav-bar'>
         <div className='nav-container'>
           <div className='nav-left'>
-            <span>Trang chủ</span>
-            <span>Giới thiệu sản phẩm</span>
-            <span>Tin tức</span>
-            <span>Liên hệ</span>
+            <span onClick={() => navigate('/')}>Trang chủ</span>
+            <span onClick={() => navigate('/about')}>Giới thiệu sản phẩm</span>
+            <span onClick={() => navigate('/news')}>Tin tức</span>
+            <span onClick={() => navigate('/contact')}>Liên hệ</span>
           </div>
           <div className='hamburger-menu' onClick={() => setSidebarOpen(!sidebarOpen)}>
             <span></span>
@@ -74,19 +77,29 @@ const Header = () => {
             <span className='close-btn' onClick={() => setSidebarOpen(false)}>×</span>
           </div>
           <div className='sidebar-menu'>
-            <span onClick={() => setSidebarOpen(false)}>Trang chủ</span>
-            <span onClick={() => setSidebarOpen(false)}>Giới thiệu sản phẩm</span>
-            <span onClick={() => setSidebarOpen(false)}>Tin tức</span>
-            <span onClick={() => setSidebarOpen(false)}>Liên hệ</span>
+            <span onClick={() => {
+              setSidebarOpen(false)
+              navigate('/')
+            }}>Trang chủ</span>
+            <span onClick={() => {
+              setSidebarOpen(false)
+              navigate('/about')
+            }}>Giới thiệu sản phẩm</span>
+            <span onClick={() => {
+              setSidebarOpen(false)
+              navigate('/news')
+            }}>Tin tức</span>
+            <span onClick={() => {
+              setSidebarOpen(false)
+              navigate('/contact')
+            }}>Liên hệ</span>
           </div>
         </div>
       </div>
 
-      {/* Overlay */}
       {sidebarOpen && <div className='sidebar-overlay' onClick={() => setSidebarOpen(false)}></div>}
 
-      {/* Slider Section */}
-      <div className='slider-section'>
+      {/* <div className='slider-section'>
         <div className='slider-container'>
           {slides.map((slide, index) => (
             <div
@@ -97,7 +110,6 @@ const Header = () => {
             </div>
           ))}
 
-          {/* Slider dots */}
           <div className='slider-dots'>
             {slides.map((_, index) => (
               <span
@@ -108,7 +120,7 @@ const Header = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Brand Section */}
       {/* <div className='brand-section'>

@@ -6,7 +6,7 @@
     background-color: #363636;
     height: 40px;
     width: 100%;
-    color: white;
+    color: rgb(211, 208, 208);
     font-size: 12px;
     margin: 0;
 }
@@ -55,21 +55,21 @@
 
 .navbar-left span:hover,
 .navbar-right span:hover {
-    color: #ffa500;
+    color: white;
 }
 
 /* Login Button */
 .login-btn {
     padding: 8px 16px;
     /* background-color: #ffa500; */
-    color: white !important;
+    /* color: white !important; */
     border-radius: 4px;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .login-btn:hover {
-    background-color: #A00605;
+    /* background-color: #A00605; */
     color: white !important;
 }
 
@@ -201,7 +201,7 @@
 }
 
 .navbar span:hover {
-    color: #e69500;
+    color: white;
     cursor: pointer;
 }
 
@@ -334,6 +334,8 @@
     }
 
     .navbar-right {
+        position: absolute;
+        right: 0;
         display: flex;
         align-items: center;
         gap: 1px;

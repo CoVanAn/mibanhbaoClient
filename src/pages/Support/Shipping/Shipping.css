@@ -1,0 +1,27 @@
+.shipping-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 32px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.shipping-container h1 {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.shipping-container h2 {
+    margin-top: 12px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.shipping-container ol {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.shipping-container li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  list-style-type: none;
+}
