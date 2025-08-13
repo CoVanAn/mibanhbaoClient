@@ -17,6 +17,7 @@ a{
 .app{
   width: 100%;
   margin: auto;
+  min-height: 800px;
 }
 
 /* Container for content with max-width */

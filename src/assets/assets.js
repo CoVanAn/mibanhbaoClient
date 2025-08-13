@@ -9,6 +9,7 @@ import menu_4 from './img_brand_4.jpg'
 import menu_5 from './img_brand_5.jpg'
 import menu_6 from './img_brand_6.jpg'
 import header_img from './header_img.png'
+import gioithieu from './gioithieu.jpg'
 import search_icon from './search_.png'
 
 // import menu_1 from './menu_1.png'
@@ -48,6 +49,7 @@ export const assets = {
     // Slider images
     slider_1,
     slider_2,
+    gioithieu,
     // Brand images
     // img_brand_1,
     // img_brand_2,

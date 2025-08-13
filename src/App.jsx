@@ -12,6 +12,7 @@ import Contact from './pages/Contact/Contact'
 import ShippingPolicy from './pages/Policy/ShippingPolicy/ShippingPolicy'
 import PrivacyPolicy from './pages/Policy/PrivacyPolicy/PrivacyPolicy'
 import ExchangePolicy from './pages/Policy/ExchangePolicy/ExchangePolicy'
+import AboutUs from './pages/AboutUs/AboutUs'
 
 import HowtoBuy from './pages/Support/HowtoBuy/HowtoBuy'
 import Shipping from './pages/Support/Shipping/Shipping'
@@ -39,7 +40,7 @@ const App = () => {
           <Route path="shipping-policy" element={<ShippingPolicy />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="exchange-policy" element={<ExchangePolicy />} />
-
+          <Route path="about" element={<AboutUs />} />
           <Route path="huong-dan-mua-hang" element={<HowtoBuy />} />
           <Route path="huong-dan-giao-nhan" element={<Shipping />} />
           <Route path="dieu-khoan-dich-vu" element={<TermsofService />} />

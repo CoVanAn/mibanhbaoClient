@@ -48,7 +48,8 @@ const Navbar = () => {
         <div className='nav-container'>
           <div className='nav-left'>
             <span onClick={() => navigate('/')}>Trang chủ</span>
-            <span onClick={() => navigate('/about')}>Giới thiệu sản phẩm</span>
+            <span onClick={() => navigate('/about')}>Giới thiệu</span>
+            <span onClick={() => navigate('/products')}>Sản phẩm</span>
             <span onClick={() => navigate('/news')}>Tin tức</span>
             <span onClick={() => navigate('/contact')}>Liên hệ</span>
           </div>
