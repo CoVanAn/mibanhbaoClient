@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './LoginPopup.css'
+import './LoginPopup.scss'
 import { assets } from '../../assets/assets'
 import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'

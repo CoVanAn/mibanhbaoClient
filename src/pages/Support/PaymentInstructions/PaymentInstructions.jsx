@@ -1,6 +1,6 @@
 
 import React from "react";
-import "./PaymentInstructions.css";
+import "./PaymentInstructions.scss";
 
 const PaymentInstructions = () => {
     return (
@@ -16,16 +16,16 @@ const PaymentInstructions = () => {
                 <li>
                     <strong>2. Nhập Thông Tin Thanh Toán:</strong>
                     <ul>
-                        <li>Nếu bạn chọn thanh toán bằng thẻ, hãy nhập thông tin thẻ của bạn, bao gồm số thẻ, ngày hết hạn và mã bảo mật (CVV).</li>
-                        <li>Nếu bạn chọn ví điện tử, bạn sẽ được chuyển đến trang đăng nhập hoặc yêu cầu nhập thông tin đăng nhập của tài khoản ví điện tử của bạn.</li>
-                        <li>Nếu bạn chọn chuyển khoản ngân hàng, bạn sẽ cần thông tin tài khoản người nhận và thực hiện chuyển khoản từ tài khoản của bạn đến tài khoản của cửa hàng.</li>
+                        <li>- Nếu bạn chọn thanh toán bằng thẻ, hãy nhập thông tin thẻ của bạn, bao gồm số thẻ, ngày hết hạn và mã bảo mật (CVV).</li>
+                        <li>- Nếu bạn chọn ví điện tử, bạn sẽ được chuyển đến trang đăng nhập hoặc yêu cầu nhập thông tin đăng nhập của tài khoản ví điện tử của bạn.</li>
+                        <li>- Nếu bạn chọn chuyển khoản ngân hàng, bạn sẽ cần thông tin tài khoản người nhận và thực hiện chuyển khoản từ tài khoản của bạn đến tài khoản của cửa hàng.</li>
                     </ul>
                 </li>
                 <li>
                     <strong>3. Xác Nhận Thanh Toán:</strong>
                     <ul>
-                        <li>Sau khi bạn đã nhập thông tin thanh toán, hãy xem xét kỹ thông tin và đảm bảo chúng chính xác.</li>
-                        <li>Bạn có thể được yêu cầu nhập mã xác thực (nếu có) để hoàn thành thanh toán.</li>
+                        <li>- Sau khi bạn đã nhập thông tin thanh toán, hãy xem xét kỹ thông tin và đảm bảo chúng chính xác.</li>
+                        <li>- Bạn có thể được yêu cầu nhập mã xác thực (nếu có) để hoàn thành thanh toán.</li>
                     </ul>
                 </li>
                 <li>
@@ -37,8 +37,8 @@ const PaymentInstructions = () => {
                 <li>
                     <strong>5. Lưu Ý An Toàn:</strong>
                     <ul>
-                        <li>Đảm bảo bạn chỉ cung cấp thông tin thanh toán trên các trang web được bảo vệ và an toàn.</li>
-                        <li>Luôn kiểm tra URL để đảm bảo bạn đang giao dịch trên trang web chính thức của cửa hàng.</li>
+                        <li>- Đảm bảo bạn chỉ cung cấp thông tin thanh toán trên các trang web được bảo vệ và an toàn.</li>
+                        <li>- Luôn kiểm tra URL để đảm bảo bạn đang giao dịch trên trang web chính thức của cửa hàng.</li>
                     </ul>
                 </li>
                 <li>

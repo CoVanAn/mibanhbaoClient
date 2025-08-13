@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
-import './Footer.css'
-import { assets } from '../../assets/assets'
-import { useNavigate } from 'react-router-dom'
+
+import React, { useState, useEffect } from 'react';
+import './Footer.scss';
+import { assets } from '../../assets/assets';
+import { useNavigate } from 'react-router-dom';
+import useIsMobile from '../../hooks/useIsMobile';
 
 const Footer = () => {
     const navigate = useNavigate();
-
-    // State cho các cột có thể thu gọn
     const [showPolicy, setShowPolicy] = useState(false);
     const [showSupport, setShowSupport] = useState(false);
-
-    // Kiểm tra màn hình di động
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = useIsMobile();
 
     return (
         <div className='footer' id='footer'>
@@ -37,7 +35,10 @@ const Footer = () => {
                             )}
                         </div>
                     </div>
-                    <ul style={isMobile ? { display: showPolicy ? 'block' : 'none' } : {}}>
+                    <ul
+                        className={isMobile ? (showPolicy ? 'footer-list active' : 'footer-list') : ''}
+                        aria-expanded={showPolicy}
+                    >
                         <li onClick={() => { navigate('/shipping-policy') }}>Chính sách vận chuyển</li>
                         <li onClick={() => { navigate('/exchange-policy') }}>Chính sách đổi trả hàng</li>
                         <li onClick={() => { navigate('/privacy-policy') }}>Chính sách bảo mật</li>
@@ -47,15 +48,17 @@ const Footer = () => {
                 {/* Cột 3 - Hỗ trợ khách hàng */}
                 <div className='footer-content'>
                     <div className='footer-title-row' onClick={() => isMobile && setShowSupport(!showSupport)}>
-                                                <div className='footer-top'>
-
-                        <h2>HỖ TRỢ KHÁCH HÀNG</h2>
-                        {isMobile && (
-                            <span className='footer-toggle'>{showSupport ? '-' : '+'}</span>
-                        )}
+                        <div className='footer-top'>
+                            <h2>HỖ TRỢ KHÁCH HÀNG</h2>
+                            {isMobile && (
+                                <span className='footer-toggle'>{showSupport ? '-' : '+'}</span>
+                            )}
                         </div>
                     </div>
-                    <ul style={isMobile ? { display: showSupport ? 'block' : 'none' } : {}}>
+                    <ul
+                        className={isMobile ? (showSupport ? 'footer-list active' : 'footer-list') : ''}
+                        aria-expanded={showSupport}
+                    >
                         <li onClick={() => { navigate('/huong-dan-mua-hang') }}>Hướng dẫn mua hàng</li>
                         <li onClick={() => { navigate('/huong-dan-thanh-toan') }}>Hướng dẫn thanh toán</li>
                         <li onClick={() => { navigate('/huong-dan-giao-nhan') }}>Hướng dẫn giao nhận</li>
@@ -90,7 +93,7 @@ const Footer = () => {
                 <p>Copyright © Mi Bánh Bao</p>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

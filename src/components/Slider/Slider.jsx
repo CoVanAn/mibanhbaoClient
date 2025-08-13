@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { assets } from '../../assets/assets';
-import './Slider.css'
+import './Slider.scss'
 
 const Slider = () => {
     const slides = [assets.slider_1, assets.slider_2];

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Navbar.css'
+import './Navbar.scss'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -85,11 +85,11 @@ const Navbar = () => {
             <span onClick={() => {
               setSidebarOpen(false)
               navigate('/about')
-            }}>Giới thiệu sản phẩm</span>
+            }}>Giới thiệu</span>
             <span onClick={() => {
               setSidebarOpen(false)
-              navigate('/news')
-            }}>Tin tức</span>
+              navigate('/products')
+            }}>Sản phẩm</span>
             <span onClick={() => {
               setSidebarOpen(false)
               navigate('/contact')

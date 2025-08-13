@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Header.css'
+import './Header.scss'
 import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -34,25 +34,25 @@ const Header = ({ setShowLogin }) => {
   }, [showProfileDropdown]);
 
   return (
-    <div className='navbar'>
-      <div className='navbar-container'>
-        <div className='navbar-left'>
+    <div className='header'>
+      <div className='header-container'>
+        <div className='header-left'>
           <span>Hotline: 0942 5533 42</span>
           <span>Email: hotro@mibanhbao.vn</span>
         </div>
-        <div className='navbar-right'>
+        <div className='header-right'>
           {!token ? (
             <>
-              <span onClick={() => setShowLogin(true)} className='login-btn'>Đăng nhập</span>
-              <span className='login-btn' onClick={() => setShowLogin(true)}>Đăng ký</span>
+              <span onClick={() => setShowLogin(true)} className='header-login-btn'>Đăng nhập</span>
+              <span className='header-login-btn' onClick={() => setShowLogin(true)}>Đăng ký</span>
               {/* <span>Liên hệ</span> */}
             </>
           ) : (
             <>
-              {/* <div className='navbar-profile' onClick={() => setShowProfileDropdown(!showProfileDropdown)}> */}
-              <span className='login-btn'>Tài khoản</span>
+              {/* <div className='header-profile' onClick={() => setShowProfileDropdown(!showProfileDropdown)}> */}
+              <span className='header-login-btn'>Tài khoản</span>
               {/* {showProfileDropdown && (
-                    <ul className='nav-profile-dropdown'>
+                    <ul className='header-profile-dropdown'>
                       <li onClick={() => {navigate('/myorders'); setShowProfileDropdown(false)}}>
                         <img src={assets.bag_icon} alt="" />
                         <p>Đơn hàng của tôi</p>
