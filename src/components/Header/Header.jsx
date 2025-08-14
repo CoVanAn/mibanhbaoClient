@@ -50,7 +50,7 @@ const Header = ({ setShowLogin }) => {
           ) : (
             <>
               {/* <div className='header-profile' onClick={() => setShowProfileDropdown(!showProfileDropdown)}> */}
-              <span className='header-login-btn'>Tài khoản</span>
+              <span className='header-login-btn' onClick={() => navigate('/account')}>Tài khoản</span>
               {/* {showProfileDropdown && (
                     <ul className='header-profile-dropdown'>
                       <li onClick={() => {navigate('/myorders'); setShowProfileDropdown(false)}}>

@@ -12,6 +12,18 @@ dist
 dist-ssr
 *.local
 
+# Environment variables
+.env
+
+# Build output
+build/
+
+# Coverage
+coverage/
+
+# Public uploads (nếu có)
+public/uploads/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -102,6 +102,24 @@ const StoreContextProvider = (props) => {
     }, [])
 
 
+    // Xử lý đăng nhập Google: nhận token từ backend
+    const handleGoogleLogin = async () => {
+        // Kiểm tra nếu URL có chứa token (sau khi Google redirect về)
+        const params = new URLSearchParams(window.location.search);
+        const tokenParam = params.get('token');
+        if (tokenParam) {
+            setToken(tokenParam);
+            localStorage.setItem('token', tokenParam);
+            await loadCartData(tokenParam);
+            // Xoá token khỏi URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    };
+
+    useEffect(() => {
+        handleGoogleLogin();
+    }, []);
+
     const contextValue = {
         food_list,
         cartItems,
@@ -111,7 +129,8 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         url,
         token,
-        setToken
+        setToken,
+        handleGoogleLogin
     }
 
 

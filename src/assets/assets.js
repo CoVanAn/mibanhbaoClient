@@ -9,8 +9,9 @@ import menu_4 from './img_brand_4.jpg'
 import menu_5 from './img_brand_5.jpg'
 import menu_6 from './img_brand_6.jpg'
 import header_img from './header_img.png'
-import gioithieu from './gioithieu.jpg'
+import gioithieu from './gioithieu.jpg' 
 import search_icon from './search_.png'
+import google_icon from './google_.png';        
 
 // import menu_1 from './menu_1.png'
 // import menu_2 from './menu_2.png'
@@ -67,12 +68,13 @@ export const assets = {
     profile_icon,
     logout_icon,
     bag_icon,
-    parcel_icon
+    parcel_icon,
+    google_icon
 }
 
 export const menu_list = [
     {
-        menu_name: "Salad",
+        menu_name: "Pizza",
         menu_image: menu_1
     },
     {

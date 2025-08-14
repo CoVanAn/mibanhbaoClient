@@ -18,6 +18,8 @@ import HowtoBuy from './pages/Support/HowtoBuy/HowtoBuy'
 import Shipping from './pages/Support/Shipping/Shipping'
 import TermsofService from './pages/Support/TermsofService/TermsofService'
 import PaymentInstructions from './pages/Support/PaymentInstructions/PaymentInstructions'
+// import AccountPage from './pages/AccountPage.jsx'
+import AccountInfo from './pages/Account/Account'
 // import ReturnPolicy from './pages/Policy/ReturnPolicy/ReturnPolicy'
 
 
@@ -45,6 +47,7 @@ const App = () => {
           <Route path="huong-dan-giao-nhan" element={<Shipping />} />
           <Route path="dieu-khoan-dich-vu" element={<TermsofService />} />
           <Route path="huong-dan-thanh-toan" element={<PaymentInstructions />} />
+          <Route path="/account" element={<AccountInfo />} />
         </Routes>
       </div>
       <Footer />
