@@ -1,10 +1,8 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import './Home.scss'
-import Header from '../../components/Header/Header'
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import Slider from '../../components/Slider/Slider'
-import AppDownload from '../../components/AppDownload/AppDownload'
 
 const Home = () => {
 
